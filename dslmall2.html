@@ -1,0 +1,221 @@
+<html><head>
+            <title>Location Links - DSL_MALL</title>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <style>
+                body { font-family: sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; }
+                h2 { color: #333; text-align: center; margin-bottom: 20px; }
+                h3{ color: #333; text-align: center; margin-bottom: 20px; }
+                #searchInput {
+                    display: block;
+                    margin: 0 auto 20px;
+                    padding: 10px;
+                    width: 80%;
+                    max-width: 500px;
+                    border-radius: 5px;
+                    border: 1px solid #ccc;
+                    font-size: 16px;
+                }
+                #locations { list-style-type: none; padding: 0; max-width: 600px; margin: 0 auto; }
+                #locations li { margin-bottom: 10px; }
+                #locations li a {
+                    display: block;
+                    padding: 12px 15px;
+                    background-color: #fff;
+                    border: 1px solid #ddd;
+                    text-decoration: none;
+                    color: #333;
+                    border-radius: 5px;
+                    transition: background-color 0.3s ease;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                }
+                #locations li a:hover { background-color: #e0e0e0; }
+                .container {
+                    max-width: 800px;
+                    margin: 20px auto;
+                    background-color: #ffffff;
+                    padding: 20px;
+                    border-radius: 8px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                }
+            </style>
+            <script>
+                function filterLocations() {
+                    const input = document.getElementById('searchInput');
+                    const filter = input.value.toLowerCase();
+                    const ul = document.getElementById('locations');
+                    const li = ul.getElementsByTagName('li');
+                    for (let i = 0; i < li.length; i++) {
+                        const a = li[i].getElementsByTagName('a')[0];
+                        const textValue = a.textContent || a.innerText;
+                        li[i].style.display = textValue.toLowerCase().includes(filter) ? "" : "none";
+                    }
+                }
+                // Function to speak text
+        function speak(text) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            speechSynthesis.speak(utterance);
+        }
+
+        // Add speech synthesis and delayed redirect on list item click
+        document.addEventListener("DOMContentLoaded", () => {
+            const links = document.querySelectorAll("#locations li a");
+            links.forEach(link => {
+                link.addEventListener("click", (event) => { // Pass the event object here
+                    event.preventDefault(); // *** CRITICAL: Prevent immediate link navigation ***
+
+                    // 1. Handle Speech Synthesis
+                    const locationName = link.textContent.trim();
+                    let cleanLocationName = locationName;
+                    if (locationName.startsWith("OU- ")) {
+                        cleanLocationName = locationName.substring("OU- ".length);
+                    }
+                    const phraseToSpeak = "Welcome to DSL virtue Mall " + cleanLocationName;
+                    speak(phraseToSpeak);
+
+                    // 2. Prepare for Delayed Redirect
+                    const targetUrl = link.href; // Get the URL from the link's href attribute
+                    const targetWindow = link.target; // Get the target attribute ('_blank', '_self', etc.)
+
+                    // Optional: Provide visual feedback to the user
+                    const originalLinkText = link.textContent;
+                    link.style.color = "orange"; // Highlight the link to indicate action
+
+                    // 3. Set the Timeout for Redirection
+                    setTimeout(() => {
+                        if (targetWindow === '_blank') {
+                            // If target is _blank, open in a new tab/window
+                            window.open(targetUrl, '_blank');
+                        } else {
+                            // Otherwise, redirect in the current window
+                            window.location.href = targetUrl;
+                        }
+
+                        // Optional: Revert link text/style if the current page remains visible
+                        // (This happens if a new tab was opened, as the current page doesn't redirect)
+                        if (targetWindow === '_blank') {
+                            link.textContent = originalLinkText;
+                            link.style.color = ""; // Revert color
+                        }
+                    }, 5000);
+                });
+            });
+        });
+
+            </script>
+        </head>
+        <body>
+            <div class="container">
+                <h2>DSL Virtue Mall</h2>
+                <h3>Touch to navigate</h3>
+                <input type="text" id="searchInput" onkeyup="filterLocations()" placeholder="Search for a location to navigate">
+                <div style="max-height: 620px; overflow-y: auto; padding: 10px; border-radius: 10px; border: 1px solid #eee;">
+                    <ul id="locations">
+         <li><a href="https://drive.google.com/file/d/1bO9PW6Zg5C31lBaK84Qapznc8CpWPdAW/view?usp=sharing" target="_blank" style="">Lower Ground floor-Dmart</a></li>
+        <li><a href="https://drive.google.com/file/d/11CnAHROPi_pGl7YD8f-DK7GgxZUqhDY3/view?usp=sharing" target="_blank">Lower Ground floor-House of Mukhwas</a></li>
+        <li><a href="https://drive.google.com/file/d/1LPVKkWwTR_TQHs6W68dKRt3nTV84BNHS/view?usp=sharing" target="_blank">Lower Ground floor-LED</a></li>
+        <li><a href="https://drive.google.com/file/d/1ZmygzIVD6m4I1802hukKhM5Ig60ZNpNv/view?usp=sharing" target="_blank">Lower Ground floor-Max</a></li>
+        <li><a href="https://drive.google.com/file/d/1ze4HR0Dw27xmVje91RCnKCocVdr4QR8M/view?usp=sharing" target="_blank">Lower Ground floor-Toy Mart</a></li>
+        <li><a href="https://drive.google.com/file/d/1iYug9AJdqKVxWn1Z4RQJkr25XvsZbe9W/view?usp=sharing" target="_blank">Lower Ground floor-Waffle E</a></li>
+        <li><a href="https://drive.google.com/file/d/1y9XhUF_RIb50cRFNXx4FvW0rYZ9OPb0u/view?usp=sharing" target="_blank">Lower Ground floor-Tibbs Frankie</a></li>
+        <li><a href="https://drive.google.com/file/d/16YWdOprAIfQn89vQhbHtjygUDzLFm_ow/view?usp=sharing" target="_blank">Lower Ground floor--Comfort Feet</a></li>
+	<li><a href="https://drive.google.com/file/d/1r8gKoENmToAggXUIkHOjOUb_g3-afbWk/view?usp=sharing" target="_blank">Ground floor-Haldirams</a></li>
+        <li><a href="https://drive.google.com/file/d/1becbuR3IHwRUxOSG-FrsfDZOjxiD3CAC/view?usp=drive_link" target="_blank">Ground floor-Beautie &amp; Neutrie</a></li>
+        <li><a href="https://drive.google.com/file/d/1nJ3gtAVLI3tCxdiaP1Ah3LA09ut-lUsl/view?usp=drive_link" target="_blank">Ground floor-Max</a></li>
+	<li><a href="https://drive.google.com/file/d/16jqbxcZLgmxPB8ON5BSSQ7ARShyw_tOW/view?usp=drive_link" target="_blank">Ground floor-John Players</a></li>
+	<li><a href="https://drive.google.com/file/d/1A7MXVelVapQWN_sBa5Y3qpUfLjGNTgSx/view?usp=drive_link" target="_blank">Ground floor-Van Heusen</a></li>
+	<li><a href="https://drive.google.com/file/d/1CRoY9jt2oQNIPA0-6DR7jlLh9seRrLgC/view?usp=drive_link" target="_blank">Ground floor-One Plus Store</a></li>
+	<li><a href="https://drive.google.com/file/d/1p0fIqmUE0Y63z16dJ4WdHTzNfjaQ67dg/view?usp=drive_link" target="_blank">Ground floor-Health &amp; Glow</a></li>
+	<li><a href="https://drive.google.com/file/d/1zyx04s4rJRPeKVv_huFeLFJxnMOsItsF/view?usp=drive_link" target="_blank">Ground floor- MC Donalds</a></li>
+	<li><a href="https://drive.google.com/file/d/1qul8rWokGYWrhFqSRu2vqykyhhN23_mT/view?usp=drive_link" target="_blank">Ground floor-Baskin Robbins</a></li>
+	<li><a href="https://drive.google.com/file/d/1VdK4XhArDMrxGaAn0lD9xsKwyQYgGRAi/view?usp=drive_link" target="_blank">Ground floor-LifeStyle</a></li>
+	<li><a href="https://drive.google.com/file/d/1qWtMwXZxlclgPp0lKNbo1Id2qCZ15ucw/view?usp=drive_link" target="_blank">Ground floor-Aptronix</a></li>
+	<li><a href="https://drive.google.com/file/d/1G_JfQxx1XUEnAGGhtG9XNsZNxyzEeSqs/view?usp=drive_link" target="_blank">Ground floor-Lenovo Store</a></li>
+	<li><a href="https://drive.google.com/file/d/1tEs9JGfq0oosMGyN7wBCpVNRTge8u-if/view?usp=drive_link" target="_blank">Ground floor-Samsung Store</a></li>
+	<li><a href="https://drive.google.com/file/d/1tInrZFINK6IGc7xu0yhpRbmbK-hWAfQ4/view?usp=drive_link" target="_blank">Ground floor-Louis Philipee</a></li>
+	<li><a href="https://drive.google.com/file/d/1vKWRhoZQSx4j_hetyxMNwv0Pr91_Nxud/view?usp=drive_link" target="_blank">Ground floor-Allen Solly</a></li>
+	<li><a href="https://drive.google.com/file/d/1GI8QTCQryqmzM9nQn8c0ZFCmUzPjFKc7/view?usp=drive_link" target="_blank">Ground Floor-Miniso</a></li>
+	<li><a href="https://drive.google.com/file/d/1ytA7SjiNx1UOrjjKPorK27fxeI1XyxGU/view?usp=drive_link" target="_blank">Ground Floor-Giva Jewellery</a></li>
+	<li><a href="https://drive.google.com/file/d/15LKZlCvw8YBOug4Rfj9vDSRChCu2BXkF/view?usp=drive_link" target="_blank">Ground Floor-Casio</a></li>
+	<li><a href="https://drive.google.com/file/d/1qAtMkgbyMiyyKDzqnU6Xe-dXUnRsjFlM/view?usp=drive_link" target="_blank">Ground Floor-Kamal Watch</a></li>
+	<li><a href="https://drive.google.com/file/d/107-mky0WhQnWhdvhu2-cSJ23D4VtBoPU/view?usp=drive_link" target="_blank">Ground Floor-Intune</a></li>
+	<li><a href="https://drive.google.com/file/d/1H3jgxTx9r17e7gaP0wehGMsw9vAeXR7H/view?usp=drive_link" target="_blank">Ground Floor-Piligrim Cosmetics</a></li>
+	<li><a href="https://drive.google.com/file/d/1MOIPuj05Jf4gJyj8S54li1HyPBp01xbw/view?usp=drive_link" target="_blank">Ground Floor-Burger King</a></li>
+	<li><a href="https://drive.google.com/file/d/15VIYRKlvSqcSqYqksNwIoV9Dqsv0H0mF/view?usp=drive_link" target="_blank">Ground Floor-Krispy Kreme</a></li>
+	<li><a href="https://drive.google.com/file/d/1PF85VZQ-9Ks68-FaCrG4AyfmOc0-S_WO/view?usp=drive_link" target="_blank">Ground Floor-Cookie Man</a></li>
+	<li><a href="https://drive.google.com/file/d/13Ixd73kffkkIlICLuHI2wgAwadNQluN_/view?usp=drive_link" target="_blank">Ground Floor-Massage Chair Zone</a></li>
+	<li><a href="https://drive.google.com/file/d/1rkdz1sCfGilfbiX2F4KNK9IBJn7lxJRX/view?usp=sharing" target="_blank">First Floor-Bella Vita</a></li>
+        <li><a href="https://drive.google.com/file/d/1cagGfWd1ej3yveojjmoDkPtfKo3rPmDt/view?usp=sharing" target="_blank">First Floor-Metro</a></li>
+        <li><a href="https://drive.google.com/file/d/1_kibc1_FGJ67HBDe3SwhPu1jGVOMEkfy/view?usp=sharing" target="_blank">First Floor-LifeStyle</a></li>
+        <li><a href="https://drive.google.com/file/d/1YDCIvQG6ehql3-aZ0x6z9jXiiPyE5W68/view?usp=sharing" target="_blank">First Floor-Celebrity</a></li>
+        <li><a href="https://drive.google.com/file/d/1QPlJ2udvAL2lrxoJry2woayxmUUc3xZt/view?usp=sharing" target="_blank">First Floor-Style Union</a></li>
+        <li><a href="https://drive.google.com/file/d/1kOtr8jN__iVqAUVlNx_BrJnR_hzeQcU7/view?usp=sharing" target="_blank">First Floor-Lenskart</a></li>
+        <li><a href="https://drive.google.com/file/d/1iFV6QKkO0inViuA4JvWNlfT3h9XRBUuu/view?usp=sharing" target="_blank">First Floor-Flying Machine</a></li>
+        <li><a href="https://drive.google.com/file/d/1G9zrxXzFnP-p9glamcb0PPyiICjLwf7O/view?usp=sharing" target="_blank">First Floor-Trendy Footwear</a></li>
+        <li><a href="https://drive.google.com/file/d/16uHFZbkWCVf1ZJNQ1qhbI-cj9iX3zbZG/view?usp=sharing" target="_blank">First Floor-SpeedTech Mobile Accessories</a></li>
+        <li><a href="https://drive.google.com/file/d/1ZKDfv4JO0xtVs6h9WPku69LP0m5t0omk/view?usp=sharing" target="_blank">First Floor-Ooka Kaka</a></li>
+        <li><a href="https://drive.google.com/file/d/1uGVy5wYxpa5Vg6awgLmXVRRlVGUW_RqL/view?usp=sharing" target="_blank">First Floor-Desi Juti</a></li>
+        <li><a href="https://drive.google.com/file/d/1Ls1TBM7sRcpp43LpYA94LHKX7eIYVBO_/view?usp=sharing" target="_blank">First Floor-Crocs</a></li>
+        <li><a href="https://drive.google.com/file/d/13m1LBEIV5zbKnaM2JRCdi7IJz-TT8MB-/view?usp=sharing" target="_blank">First Floor-Trends MenWear</a></li>
+        <li><a href="https://drive.google.com/file/d/10w2VN0JgsPSoRWEjB7-vWWDnC6DbmgfV/view?usp=sharing" target="_blank">First Floor-Intune</a></li>
+        <li><a href="https://drive.google.com/file/d/1dJKPP8iBgJ530-7YwkTAG2_XEg0giFZc/view?usp=sharing" target="_blank">First Floor-Jockey</a></li>
+        <li><a href="https://drive.google.com/file/d/1S-TaGHdmxIGG4dC2Wy131sIqhRcY1QUd/view?usp=sharing" target="_blank">First Floor-Van Heusen</a></li>
+        <li><a href="https://drive.google.com/file/d/1ojxIbYOwoxj9YZrHCzYUWyrFWkrbwuUN/view?usp=drivesdk" target="_blank">Second floor-Bombay Dyeing</a></li>
+	<li><a href="https://drive.google.com/file/d/1moAIlFpj5mc2bT7DKYtfCerE9LzDlPbt/view?usp=drivesdk" target="_blank">Second floor-Kushal's Jewellery</a></li>
+	<li><a href="https://drive.google.com/file/d/146sS3pdAE5j_nzRfvFW-OQvIziyMnwNW/view?usp=drivesdk" target="_blank">Second floor-Trends Junior</a></li>
+	<li><a href="https://drive.google.com/file/d/1mY8gvbjgW6qbvaU7KhMIjw7EdkTJsybD/view?usp=drivesdk" target="_blank">Second floor-VIP</a></li>
+	<li><a href="https://drive.google.com/file/d/14PiTeMqcoKDPcS0ATivRo0asEcFjTDsa/view?usp=drivesdk" target="_blank">Second floor-Lavie</a></li>
+	<li><a href="https://drive.google.com/file/d/1acs0IxaRjywp-MkFXAyIGeLU2w4_eIty/view?usp=drivesdk" target="_blank">Second floor-Baggit</a></li>
+	<li><a href="https://drive.google.com/file/d/1H0wMq8ErHW1dEDVi2NOqn4v-54OLeiOM/view?usp=drivesdk" target="_blank">Second floor-Go Colors</a></li>
+	<li><a href="https://drive.google.com/file/d/1ieE_vRmtyQ9I7ePP9nwymjvNgkq0ib_s/view?usp=drivesdk" target="_blank">Second floor-Biba</a></li>
+	<li><a href="https://drive.google.com/file/d/1A0cCvz6hCftt1qoTOuKg17sGGFPRZOGH/view?usp=drivesdk" target="_blank">Second floor-Aurelia</a></li>
+	<li><a href="https://drive.google.com/file/d/1tn1yBCP8LR-aw_W4oe6OmtrUM44pVDY6/view?usp=drivesdk" target="_blank">Second floor-W</a></li>
+	<li><a href="https://drive.google.com/file/d/17NgcXf4ImHQZ0jV_XznJMi8TmlGSWiKQ/view?usp=drivesdk" target="_blank">Second floor-Easy Buy</a></li>
+	<li><a href="https://drive.google.com/file/d/1uzc3i3VB5ofLwPI9QO8XoEywfy08H8CS/view?usp=drivesdk" target="_blank">Second floor-Home Centre</a></li>
+	<li><a href="https://drive.google.com/file/d/1YQQgcEs9QURAARXvdzQQx2d6Z__z222f/view?usp=drivesdk" target="_blank">Second floor-Hassu's</a></li>
+	<li><a href="https://drive.google.com/file/d/1mGd4AI6RLddjqVBnMEUgm1Mm1bodvH88/view?usp=drivesdk" target="_blank">Second floor-Suti</a></li>
+	<li><a href="https://drive.google.com/file/d/1mUHnNEiVVsKFSWZM_SNZ3L7IJ3QZC6ru/view?usp=drivesdk" target="_blank">Second floor-Konnect</a></li>
+	<li><a href="https://drive.google.com/file/d/1MAWeTX26Rv-yBftRv0KAnx320LElX0v-/view?usp=drivesdk" target="_blank">Second floor-G Care</a></li>
+	<li><a href="https://drive.google.com/file/d/1eWYbbYLrm364GVMilEL6f4EIQlIf4LDc/view?usp=drivesdk" target="_blank">Second floor-Estele</a></li>
+	<li><a href="https://drive.google.com/file/d/1UEEaTU8vF6zsF8M76jpGfTxGVRM91esX/view?usp=drivesdk" target="_blank">Second floor-Rangita</a></li>
+	<li><a href="https://drive.google.com/file/d/16sp5QX49t9mvpt1v6klLKH0J5_7P7Db3/view?usp=drivesdk" target="_blank">Second floor-Trends Woman</a></li>
+	<li><a href="https://drive.google.com/file/d/116cWpSqI1AATDjkB_Ijgj3DbZXcHNBZR/view?usp=drivesdk" target="_blank">Second floor-Lala's</a></li>
+	<li><a href="https://drive.google.com/file/d/1BSvfk-Qq9vqDywniQG7b7dhDsl-YzGhN/view?usp=drivesdk" target="_blank">Second floor-Zivame</a></li>
+	<li><a href="https://drive.google.com/file/d/1IDtzajxKiyWberTPuNUONj6xTEN6qQLn/view?usp=drivesdk" target="_blank">Second floor-The Monk Spa</a></li>
+	<li><a href="https://drive.google.com/file/d/1bU2cvYqLSgrgtghddOolXalJxTm1Y6j8/view?usp=drivesdk" target="_blank">Second floor-Avantara by Trends</a></li>
+	<li><a href="https://drive.google.com/file/d/1WEoWIUBRETDHa6JpPD1rkq2RPcmrygJ1/view?usp=drivesdk" target="_blank">Second floor-Nakit</a></li>
+	<li><a href="https://drive.google.com/file/d/1rVxORqUTXTSbkNjpzqL0RoZt_gp__8z9/view?usp=drivesdk" target="_blank">Second floor-Prisma</a></li>
+	<li><a href="https://drive.google.com/file/d/1Ssdod1HK99XIHZlbCuW9LNwSSnqP7Lbl/view?usp=drive_link" target="_blank">Third floor-California Burrito</a></li>
+	<li><a href="https://drive.google.com/file/d/1PVCKizmRmv3AlHQAM0U8TqDenEZTXgGp/view?usp=drive_link" target="_blank">Third floor-Cream Stone</a></li>
+	<li><a href="https://drive.google.com/file/d/1BiSNkOSxRi50MwsM-Y4G89YpLjXbIUao/view?usp=drive_link" target="_blank">Third floor-Chennai Coffee Shop</a></li>
+	<li><a href="https://drive.google.com/file/d/1dBH8SY6U2_Z-X5Tto4IFCw4L193ztZJ7/view?usp=drive_link" target="_blank">Third floor-On The Way</a></li>
+	<li><a href="https://drive.google.com/file/d/1mZrkCHaD9dmGOWpKb4cl2qRB8tx46_5v/view?usp=drive_link" target="_blank">Third floor-Mocktails and Fries</a></li>
+	<li><a href="https://drive.google.com/file/d/12YVz_ehXIMnlEWUYJSH1L6xCo1GkyOxm/view?usp=drive_link" target="_blank">Third floor-Tibbs Frankie</a></li>
+	<li><a href="https://drive.google.com/file/d/1H640cbaLptbXlcmeYRN8Af6ndHlQGesM/view?usp=drive_link" target="_blank">Third floor-Taste The South</a></li>
+	<li><a href="https://drive.google.com/file/d/1PFLoGQDFrtJdf8Bw56fxDxlQK7LCG9R4/view?usp=drive_link" target="_blank">Third floor-KFC</a></li>
+	<li><a href="https://drive.google.com/file/d/1tR6eQX1Wld-xXQ9gSyezSxF9-fxZUbGe/view?usp=drive_link" target="_blank">Third floor-Khansaab Express</a></li>
+	<li><a href="https://drive.google.com/file/d/1ZrI6Gd0jGueRT_Tr6lZM5lNt9Mo7n2hK/view?usp=drive_link" target="_blank">Third floor-Lalaji Dilli Walle</a></li>
+	<li><a href="https://drive.google.com/file/d/1JES5PgzdAyM2BGmyFw-B2ILsYVK5XD1w/view?usp=drive_link" target="_blank">Third floor-Wow Momo</a></li>
+	<li><a href="https://drive.google.com/file/d/1pnElZ8D2imHfnicptgUq_swztVrWs0rC/view?usp=drive_link" target="_blank">Third floor-Sizziling Joe</a></li>
+	<li><a href="https://drive.google.com/file/d/1Jyx9bBzhFE6IXlxyRACnhTq_afaMnLIF/view?usp=drive_link" target="_blank">Third floor-Burger King</a></li>
+	<li><a href="https://drive.google.com/file/d/1eJX3b86sqMub4gT_MbS_Ot7aaVqlL7S1/view?usp=drive_link" target="_blank">Third floor-Pizza Hut</a></li>
+	<li><a href="https://drive.google.com/file/d/1GEcKAjELmCstw8hleinSvWAuEVelePiu/view?usp=drive_link" target="_blank">Third floor-Thickshake Factory</a></li>
+	<li><a href="https://drive.google.com/file/d/1-48Nm03hHVi4CC1CC2WEN1ek6_v7_q8h/view?usp=drive_link" target="_blank">Third floor-Drunken Monkey</a></li>
+	<li><a href="https://drive.google.com/file/d/1xCSCrI0cE-yGocT56LrcXxb8uwyzdUUV/view?usp=drive_link" target="_blank">Third floor-MC Donalds</a></li>
+	<li><a href="https://drive.google.com/file/d/1B4Q8tjz0iv6AqFwiy1IfQ6_Wne90ZIpB/view?usp=drive_link" target="_blank">Third floor-Hamleys</a></li>
+	<li><a href="https://drive.google.com/file/d/1vYs3gkjdCVixiwsTkuKLRA7n9prV_Ay6/view?usp=drive_link" target="_blank">Third floor-Lattliv</a></li>
+	<li><a href="https://drive.google.com/file/d/1cKKeuk7eLeLck_300g1h8hvCZuxcAgp9/view?usp=drive_link" target="_blank">Third floor-Cinepolis</a></li>
+	<li><a href="https://drive.google.com/file/d/160n9Ao4CeVHvdU-Tft8ApkP3aLD5HDbD/view?usp=drivesdk" target="_blank">Fourth floor-Halucinate VR</a></li>
+	<li><a href="https://drive.google.com/file/d/1dMBlG1BhH4oT5G6Pk1GezcPv4EDDVtZK/view?usp=drivesdk" target="_blank">Fourth floor-Tony and Guy</a></li>
+	<li><a href="https://drive.google.com/file/d/1LyyL42J60G8q-gRpiMQ2zGqXjZxreNlB/view?usp=drivesdk" target="_blank">Fourth floor-Scary House</a></li>
+	<li><a href="https://drive.google.com/file/d/1nVU-GyLlQcKFsZGwOr2Uc12fKb2YQWcD/view?usp=drivesdk" target="_blank">Fourth floor-Busters Games</a></li>
+	<li><a href="https://drive.google.com/file/d/1ydrm_lZk_Xsvssx5OW0BZFrNQyfzEIpd/view?usp=drivesdk" target="_blank">Fourth floor-BBQ Nation</a></li>
+	<li><a href="https://drive.google.com/file/d/1z6ycDJMuK2EuAmHAG_UCtbbiRHFtCN58/view?usp=drivesdk" target="_blank">Fourth floor-Refresh N Go</a></li>
+	<li><a href="https://drive.google.com/file/d/1CjJbI8gMTjyhFZ1o8Njp5JVNNULcgIIO/view?usp=drivesdk" target="_blank">Fourth floor-Fish Spa</a></li>
+
+                    </ul>
+                </div>
+            </div>
+        
+        
+        </body></html>
